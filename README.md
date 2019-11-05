@@ -31,11 +31,11 @@ func main() {
 
 	client := fasthttpmock.NewClient(pairs, fasthttpmock.Equal, fasthttpmock.Copy)
 
-    request := fasthttp.AcquireRequest()
-    request.Header.SetMethod("GET")
-    request.SetRequestURI("http://example.com/test-1")
-    response := fasthttp.AcquireResponse()
+	request := fasthttp.AcquireRequest()
+	request.Header.SetMethod("GET")
+	request.SetRequestURI("http://example.com/test-1")
+	response := fasthttp.AcquireResponse()
 
-    _ = client.Do(request, response)
+	_ = client.Do(request, response)
 }
 ```
