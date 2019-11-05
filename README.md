@@ -39,3 +39,31 @@ func main() {
 	_ = client.Do(request, response)
 }
 ```
+
+### Usage
+```go
+package main
+
+import (
+	"github.com/gopereza/fasthttpmock"
+	"github.com/valyala/fasthttp"
+)
+
+func main() {
+	fastClient := &fasthttp.Client{}
+
+	client := fasthttpmock.NewWrapClient(fastClient)
+
+	request := fasthttp.AcquireRequest()
+	response := &fasthttp.Response{}
+	_ = client.Do(request, response)
+
+	mockClient := fasthttpmock.NewClient(fasthttpmock.NewRequestResponsePairs(), fasthttpmock.Equal, fasthttpmock.Copy)
+
+	// switch to mock usage
+	client.SetMockClient(mockClient)
+
+	// switch to real usage
+	client.SetMockClient(nil)
+}
+```
